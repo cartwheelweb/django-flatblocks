@@ -4,6 +4,8 @@ from django.core.cache import cache
 
 from flatblocks.settings import CACHE_PREFIX
 
+from mezzanine.core.fields import HtmlField
+
 
 class FlatBlock(models.Model):
     """
@@ -17,7 +19,8 @@ class FlatBlock(models.Model):
     header = models.CharField(blank=True, null=True, max_length=255,
                 verbose_name=_('Header'),
                 help_text=_("An optional header for this content"))
-    content = models.TextField(verbose_name=_('Content'), blank=True, null=True)
+    
+    content = HtmlField(verbose_name=_('Content'), blank=True, null=True)
 
     def __unicode__(self):
         return u"%s" % (self.slug,)
